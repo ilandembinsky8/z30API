@@ -8,7 +8,40 @@ public class BookSearchReply
 
 	private int totalHits;
 	private Book[] docs;
-
+	
+	public BookSearchReply(int totalHits, int arrSize)
+	{
+		this.totalHits = totalHits;
+		this.docs = new Book[arrSize];
+	}
+	public BookSearchReply(int num)
+	{
+		docs = new Book[num];
+	}
+	public BookSearchReply(int totalHits, Book[] docs)
+	{
+		super();
+		this.totalHits = totalHits;
+		this.docs = docs;
+	}
+	
+	public Book[] getDocs()
+	{
+		return docs;
+	}
+	public void setDocs(Book[] docs)
+	{
+		this.docs = docs;
+	}
+	public int getTotalHits()
+	{
+		return this.totalHits;
+	}
+	public void setTotalHits(int totalHits)
+	{
+		this.totalHits = totalHits;
+	}
+	
 	public BookSearchReply(String url) throws Exception
 	{
 		HTTPConnection con = new HTTPConnection(url);
@@ -74,43 +107,6 @@ public class BookSearchReply
 		}
 	
 		printDocs();
-	}
-	public BookSearchReply(int totalHits, int arrSize)
-	{
-		this.totalHits = totalHits;
-		this.docs = new Book[arrSize];
-	}
-	
-	public BookSearchReply(int num)
-	{
-		docs = new Book[num];
-	}
-
-	public BookSearchReply(int totalHits, Book[] docs)
-	{
-		super();
-		this.totalHits = totalHits;
-		this.docs = docs;
-	}
-
-	public Book[] getDocs()
-	{
-		return docs;
-	}
-
-	public void setDocs(Book[] docs)
-	{
-		this.docs = docs;
-	}
-
-	public int getTotalHits()
-	{
-		return this.totalHits;
-	}
-
-	public void setTotalHits(int totalHits)
-	{
-		this.totalHits = totalHits;
 	}
 	
 	public void printDocs()

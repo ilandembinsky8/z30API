@@ -13,12 +13,14 @@ import org.json.JSONObject;
 
 public class Main
 {
-	private static String url1 = "http://primo.nli.org.il/PrimoWebServices/xservice/search/brief?institution=NNL"
-							  + "&loc=local,scope:(NNL)" 
-							  + "&query=creator,exact,حافظ" 
-							  + "&indx=1"  
-							  + "&bulkSize=50"
-							  + "&json=true";
+	private static String url1 = "http://primo.nli.org.il/PrimoWebServices/xservice/search/brief?json=true"
+							   + "&institution=NNL&loc=local,scope:(NNL)"
+							   + "&query=facet_rtype,exact,manuscripts"
+							   + "&query=facet_tlevel,exact,online_resources"
+							   + "&query=any,contains,Ms.%20Ar&query=creator,exact,\"حافظ،\""
+							   + "&query_exc=facet_lang,exact,heb"
+							   + "&indx=1"
+							   + "&bulkSize=50";
 	
 	private static String url2 = "http://primo.nli.org.il/PrimoWebServices/xservice/search/brief?json=true"
 			 				  + "&institution=NNL&loc=local,scope:(NNL_Ephemera)" 
@@ -40,30 +42,39 @@ public class Main
 
 		return jsonObj;
 	}
+	public static JSONObject convertToJson(BookRetrieve reply) throws JSONException
+	{
+		JSONObject jsonObj = new JSONObject(reply);
 
+		return jsonObj;
+	}
 	public static void main(String[] args) throws Exception
-	{		
-		SearchReply reply = new SearchReply(url2);
-		BookSearchReply bookReply = new BookSearchReply(url1);
-		
-		JSONObject replyJSON = convertToJson(reply);
-		JSONObject bookReplyJSON = convertToJson(bookReply);
-		
+	{				
 		try
 		{
-			File fileDir = new File("C:\\Users\\sQasim\\Desktop\\SheetsJSON-UTF.txt");
-			File fileDir1 = new File("C:\\Users\\sQasim\\Desktop\\BooksJSON-UTF.txt");
-			
+			SearchReply reply = new SearchReply(url2);
+			JSONObject replyJSON = convertToJson(reply);
+			File fileDir = new File("C:\\Users\\sQasim\\Desktop\\SheetsJSON-UTF.json");
 			Writer out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(fileDir), "UTF8"));
-			Writer out1 = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(fileDir1), "UTF8"));
-			
 			out.append(replyJSON.toString());
-			out1.append(bookReplyJSON.toString());
-			
 			out.flush();
-			out1.flush();
 			out.close();
+			
+			BookSearchReply bookReply = new BookSearchReply(url1);
+			JSONObject bookReplyJSON = convertToJson(bookReply);
+			File fileDir1 = new File("C:\\Users\\sQasim\\Desktop\\BooksJSON-UTF.json");
+			Writer out1 = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(fileDir1), "UTF8"));
+			out1.append(bookReplyJSON.toString());
+			out1.flush();
 			out1.close();
+			
+			BookRetrieve bookR = new BookRetrieve("NNL_ALEPH003157499");
+			JSONObject bookRJSON = convertToJson(bookR);
+			File fileDir2 = new File("C:\\Users\\sQasim\\Desktop\\BooksRETRIEVEJSON-UTF.json");
+			Writer out2 = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(fileDir2), "UTF8"));
+			out2.append(bookRJSON.toString());
+			out2.flush();
+			out2.close();
 		        
 		} 
 		catch (UnsupportedEncodingException e) 

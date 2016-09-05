@@ -8,6 +8,28 @@ public class SearchReply
 	private int totalHits;
 	private Sheet[] docs;
 	
+	public SearchReply(int totalHits, int arrSize)
+	{
+		this.totalHits = totalHits;
+		this.docs = new Sheet[arrSize];
+	}
+	public int getTotalHits()
+	{
+		return this.totalHits;
+	}
+	public void setTotalHits(int totalHits)
+	{
+		this.totalHits = totalHits;
+	}
+	public Sheet[] getDocs()
+	{
+		return this.docs;
+	}
+	public void setDocs(Sheet[] docs)
+	{
+		this.docs = docs;
+	}
+	
 	public SearchReply(String url) throws Exception
 	{
 		HTTPConnection con = new HTTPConnection(url);
@@ -65,34 +87,7 @@ public class SearchReply
 			
 			this.docs[i] = sheet;
 		}
-	
 		printDocs();
-	}
-	
-	public SearchReply(int totalHits, int arrSize)
-	{
-		this.totalHits = totalHits;
-		this.docs = new Sheet[arrSize];
-	}
-
-	public int getTotalHits()
-	{
-		return this.totalHits;
-	}
-
-	public void setTotalHits(int totalHits)
-	{
-		this.totalHits = totalHits;
-	}
-
-	public Sheet[] getDocs()
-	{
-		return this.docs;
-	}
-
-	public void setDocs(Sheet[] docs)
-	{
-		this.docs = docs;
 	}
 	
 	public void printDocs()
@@ -103,5 +98,4 @@ public class SearchReply
 			this.docs[i].printSheet();
 		}
 	}
-	
 }

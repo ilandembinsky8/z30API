@@ -2,7 +2,6 @@ package apiPackage;
 
 public class Book
 {
-
 	private String recordId;
 	private String author;
 	private String title;
@@ -17,92 +16,75 @@ public class Book
 	{
 		return webLink;
 	}
-
 	public void setWebLink(String webLink)
 	{
 		this.webLink = webLink;
 	}
-
 	public String getRecordId()
 	{
 		return this.recordId;
 	}
-
 	public void setRecordId(String recordId)
 	{
 		this.recordId = recordId;
 	}
-
 	public String getAuthor()
 	{
 		return author;
 	}
-
 	public void setAuthor(String author)
 	{
 		this.author = author;
 	}
-
 	public String getTitle()
 	{
 		return this.title;
 	}
-
 	public void setTitle(String title)
 	{
 		this.title = title;
 	}
-
 	public String getPublisher()
 	{
 		return this.publisher;
 	}
-
 	public void setPublisher(String publisher)
 	{
 		this.publisher = publisher;
 	}
-
 	public String getCreationdate()
 	{
 		return creationdate;
 	}
-
 	public void setCreationdate(String creationdate)
 	{
 		this.creationdate = creationdate;
 	}
-
 	public String getSubject()
 	{
 		return this.subject;
 	}
-
 	public void setSubject(String subject)
 	{
 		this.subject = subject;
 	}
-
 	public String getSource()
 	{
 		return this.source;
 	}
-
 	public void setSource(String source)
 	{
 		this.source = source;
 	}
-
 	public String getThumbnail()
 	{
 		return this.thumbnail;
 	}
-
 	public void setThumbnail(String thumbnail)
 	{
 		this.thumbnail = thumbnail;
 	}
-
+	
 	public void printBook()
 	{
 		System.out.println("Title: " + getTitle());
@@ -116,6 +98,5 @@ public class Book
 		System.out.println("WebLink: " + getWebLink());
 		System.out.println("******************************************************************");
 		System.out.println();
-
 	}
 }
