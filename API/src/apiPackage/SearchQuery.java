@@ -2,6 +2,7 @@ package apiPackage;
 
 public class SearchQuery
 {
+	private String type;
 	private int index;
 	private int blockSize;
 	private String author;
@@ -11,13 +12,42 @@ public class SearchQuery
 	private String title;
 	private String subject;
 	
-	private final String scope  = "http://primo.nli.org.il/PrimoWebServices/xservice/search/brief?json=true&query_inc=facet_tlevel,exact,NoRestrictions&institution=NNL&loc=local,scope:(NNL_Ephemera)&query_inc=rtype,exact,sheet";
+	private final String sheetScope  = "http://primo.nli.org.il/PrimoWebServices/xservice/search/brief?json=true"
+									 + "&query_inc=facet_tlevel,exact,NoRestrictions"
+									 + "&institution=NNL"
+									 + "&loc=local,scope:(NNL_Ephemera)";
+	
+	private final String BookScope   = "http://primo.nli.org.il/PrimoWebServices/xservice/search/brief?institution=NNL&json=true"
+									 + "&loc=local,scope:(NNL)";
+	
 	
 	private final String[] queries = {"&query_inc=facet_lang,exact,"
 									 ,"&query_inc=facet_creator,exact,"
 									 ,"&query_inc=facet_creationdate,exact,"
 									 ,"&query_inc=facet_genre,exact,"
-									 ,"&query_inc=facet_topic,exact,"};
+									 ,"&query_inc=facet_topic,exact,"
+									 ,"&indx="
+									 ,"&bulkSize="};
+
+	public String getType()
+	{
+		return type;
+	}
+
+	public void setType(String type)
+	{
+		this.type = type;
+	}
+
+	public String getSheetScope()
+	{
+		return sheetScope;
+	}
+
+	public String getBookScope()
+	{
+		return BookScope;
+	}
 
 	public SearchQuery()
 	{
@@ -120,10 +150,5 @@ public class SearchQuery
 	public String[] getQueries()
 	{
 		return queries;
-	}
-
-	public String getScope()
-	{
-		return scope;
 	}
 }
