@@ -29,10 +29,6 @@ public class HTTPConnection
 		this.url = url;
 	}
 
-	public void Search()
-	{
-		
-	}
 	
 	public JSONObject sendGet() throws Exception
 	{

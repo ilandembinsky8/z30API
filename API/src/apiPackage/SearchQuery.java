@@ -39,7 +39,6 @@ public class SearchQuery
 		this.endYear = -1;
 		this.title = "any";
 		this.subject = "any";
-		throw new UnsupportedOperationException();
 	}
 	
 	public String getGenre()

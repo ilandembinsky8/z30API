@@ -34,8 +34,7 @@ public class Main
 		JSONObject jsonObj = new JSONObject(reply);
 
 		return jsonObj;
-	}
-	
+	}	
 	public static JSONObject convertToJson(BookSearchReply reply) throws JSONException
 	{
 		JSONObject jsonObj = new JSONObject(reply);
@@ -50,31 +49,40 @@ public class Main
 	}
 	public static void main(String[] args) throws Exception
 	{				
+		SearchQuery s = new SearchQuery();
+		s.setType("book");
+		s.setAuthor("حافظ");
+		s.setBlockSize(50);
+		s.setIndex(1);
+		
 		try
 		{
-			SearchReply reply = new SearchReply(url2);
-			JSONObject replyJSON = convertToJson(reply);
-			File fileDir = new File("C:\\Users\\sQasim\\Desktop\\SheetsJSON-UTF.json");
-			Writer out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(fileDir), "UTF8"));
-			out.append(replyJSON.toString());
-			out.flush();
-			out.close();
+//			SearchReply reply = new SearchReply(url2);
+//			JSONObject replyJSON = convertToJson(reply);
+//			File fileDir = new File("C:\\Users\\sQasim\\Desktop\\SheetsJSON-UTF.json");
+//			Writer out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(fileDir), "UTF8"));
+//			out.append(replyJSON.toString());
+//			out.flush();
+//			out.close();
 			
-			BookSearchReply bookReply = new BookSearchReply(url1);
-			JSONObject bookReplyJSON = convertToJson(bookReply);
-			File fileDir1 = new File("C:\\Users\\sQasim\\Desktop\\BooksJSON-UTF.json");
+			//BookSearchReply bookReply = new BookSearchReply(url1);
+			//JSONObject bookReplyJSON = convertToJson(bookReply);
+			System.out.println(s.URLQuery());
+			
+			JSONObject bookReplyJSON = SearchBook(s);
+			File fileDir1 = new File("C:\\Users\\sQasim\\Desktop\\TESTING SeachBooks.json");
 			Writer out1 = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(fileDir1), "UTF8"));
 			out1.append(bookReplyJSON.toString());
 			out1.flush();
 			out1.close();
 			
-			BookRetrieve bookR = new BookRetrieve("NNL_ALEPH003157499");
-			JSONObject bookRJSON = convertToJson(bookR);
-			File fileDir2 = new File("C:\\Users\\sQasim\\Desktop\\BooksRETRIEVEJSON-UTF.json");
-			Writer out2 = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(fileDir2), "UTF8"));
-			out2.append(bookRJSON.toString());
-			out2.flush();
-			out2.close();
+//			BookRetrieve bookR = new BookRetrieve("NNL_ALEPH003157499");
+//			JSONObject bookRJSON = convertToJson(bookR);
+//			File fileDir2 = new File("C:\\Users\\sQasim\\Desktop\\BooksRETRIEVEJSON-UTF.json");
+//			Writer out2 = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(fileDir2), "UTF8"));
+//			out2.append(bookRJSON.toString());
+//			out2.flush();
+//			out2.close();
 		        
 		} 
 		catch (UnsupportedEncodingException e) 
@@ -90,5 +98,11 @@ public class Main
 		   	System.out.println(e.getMessage());
 		} 
 	}
-		
+	
+	public static JSONObject SearchBook(SearchQuery s) throws Exception
+	{
+		BookSearchReply booksList = new BookSearchReply(s.URLQuery());
+		JSONObject reply = convertToJson(booksList);
+		return reply;
+	}
 }
